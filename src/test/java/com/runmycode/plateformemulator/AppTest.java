@@ -20,6 +20,7 @@ public class AppTest{
 			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 			ActivemqTest activemqTest = (ActivemqTest)context.getBean("activemqTest");
 			activemqTest.sendMessage();
+			System.out.println("Yeeesssss !");
 		}catch(Exception e){
 			Assert.fail(e.getMessage());
 		}
