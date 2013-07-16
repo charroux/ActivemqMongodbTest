@@ -14,13 +14,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 @RunWith(JUnit4.class)
 public class AppTest{
 	
+	ActivemqTest activemqTest;
+	
 	@Before
 	public void init(){
 		try{
 			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-			ActivemqTest activemqTest = (ActivemqTest)context.getBean("activemqTest");
-			activemqTest.sendMessage();
-			System.out.println("Yeeesssss !");
+			activemqTest = (ActivemqTest)context.getBean("activemqTest");
 		}catch(Exception e){
 			Assert.fail(e.getMessage());
 		}
@@ -30,6 +30,17 @@ public class AppTest{
 	@Test
     public void testApp()
     {
+		try {
+			activemqTest.sendMessage();
+			Assert.assertTrue(activemqTest.receiveMessage());
+		} catch (Exception e) {
+			Assert.fail(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
+		
+		
     }
 	
 }

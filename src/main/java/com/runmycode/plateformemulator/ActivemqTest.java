@@ -40,15 +40,22 @@ import org.apache.log4j.Logger;
 public class ActivemqTest{
 	
 	class TextMessageReceiver implements MessageListener{
+		
+		boolean messageReceived = false;
 
 		@Override
 		public void onMessage(Message message) {
 			try{
 				TextMessage text = (TextMessage)message;
+				messageReceived = true;
 				System.out.println("Text received : " + text.getText());
 			}catch(Exception e){
 				System.out.println(e.getMessage());
 			}
+		}
+
+		public boolean isMessageReceived() {
+			return messageReceived;
 		}
 		
 	}
@@ -61,6 +68,8 @@ public class ActivemqTest{
 	private QueueSender jobSubmissionQueueSender;
 
 	private int deliveryModeForActiveMQ;
+	
+	TextMessageReceiver textMessageReceiver;
 	
 	public ActivemqTest(QueueConnectionFactory connectionFactory, Queue jobSubmissionQueue, String messagePersistenceIntoActiveMQ) throws JMSException 
 	{
@@ -79,7 +88,7 @@ public class ActivemqTest{
 		}
 		
 		queueReceiver = jobSubmissionQueueSession.createReceiver(jobSubmissionQueue);
-		queueReceiver.setMessageListener(new TextMessageReceiver());
+		queueReceiver.setMessageListener(textMessageReceiver = new TextMessageReceiver());
 		
 		connection.start();
 
@@ -94,8 +103,11 @@ public class ActivemqTest{
 	  // normal priority = 4
 	  // time to live = 0 (no expiration) 
 	  jobSubmissionQueueSender.send(textMessage, deliveryModeForActiveMQ, 4, 0);
-	  
-	  
+  }
+  
+  public boolean receiveMessage() throws Exception{
+	  Thread.sleep(3000);
+	  return textMessageReceiver.isMessageReceived();
   }
   
   
