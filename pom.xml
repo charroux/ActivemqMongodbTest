@@ -34,23 +34,11 @@
 	<version>5.8.0</version>
 </dependency>
 
-<!-- <dependency>
-	<groupId>org.apache.activemq</groupId>
-	<artifactId>activemq-openwire-generator</artifactId>
-	<version>5.8.0</version>
-</dependency> -->
-
 <dependency>
 	<groupId>org.apache.activemq</groupId>
 	<artifactId>activemq-openwire-legacy</artifactId>
 	<version>5.8.0</version>
 </dependency>
-
-<!-- <dependency>
-	<groupId>org.springframework.data</groupId>
-	<artifactId>spring-data-mongodb-parent</artifactId>
-	<version>1.2.1.RELEASE</version>
-</dependency> -->
 
 <dependency>
  <groupId>org.springframework.data</groupId>
@@ -62,25 +50,7 @@
 	<groupId>org.springframework.data</groupId>
 	<artifactId>spring-data-commons-core</artifactId>
 	<version>1.4.1.RELEASE</version>
-</dependency>
-                    
-  	
-  	<!--  
-  	<dependency>
-	   <groupId>org.springframework.integration</groupId>
-	   <artifactId>spring-integration-core</artifactId>
-	   <version>2.2.3.RELEASE</version>
-	</dependency>
-	
-	
-	<dependency>
-	<groupId>activemq</groupId>
-	<artifactId>activemq</artifactId>
-	<version>release-2.1</version>
-</dependency>
--->
-            
-            
+</dependency>            
 	
 	<dependency>
     <groupId>org.apache.geronimo.specs</groupId>
@@ -110,7 +80,7 @@
 	            <directory>src/main/resources</directory>
 	        </resource>
 	    </resources>
-	  	<finalName>runmycodEmulatorTest</finalName>
+	  	<finalName>runmycodemulatortest</finalName>
 		  <plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
